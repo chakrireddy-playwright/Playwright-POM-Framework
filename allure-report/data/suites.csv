@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","12578","OrangeHRM Login Test","webkit","2026-06-19","passed","2026-06-19","","endtoend.spec.ts","",""
+"","17943","OrangeHRM Login Test","firefox","2026-06-19","passed","2026-06-19","","endtoend.spec.ts","",""
+"","10183","OrangeHRM Login Test","chromium","2026-06-19","passed","2026-06-19","","endtoend.spec.ts","",""

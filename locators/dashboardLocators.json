@@ -1,0 +1,4 @@
+{
+  "dashboardText": "//h6[text()='Dashboard']",
+  "profileIcon": ".oxd-userdropdown-tab"
+}
