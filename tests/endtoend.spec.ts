@@ -6,8 +6,8 @@ import { LogoutPage } from '../pages/LogoutPage';
 
 import { ENV } from '../utils/env';
 
-test('OrangeHRM Login Test', async ({ page }) => {
-
+test('OrangeHRM Login Test @smoke', async ({ page }) => {
+    
     await page.goto(ENV.BASE_URL);
 
     const loginPage = new LoginPage(page);
@@ -25,7 +25,7 @@ test('OrangeHRM Login Test', async ({ page }) => {
     await logoutPage.clickLogout();
 });
 
-test('Demo failure for screenshot', async ({ page }) => {
+    test('Demo failure test @demo', async ({ page }) => {
 
     await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index');
 
