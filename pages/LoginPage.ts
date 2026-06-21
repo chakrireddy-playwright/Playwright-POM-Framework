@@ -14,10 +14,6 @@ export class LoginPage {
 
         await this.clickLogin();
 
-        // ✅ FIXED: stable dashboard locator (NO more errors)
-        await this.page.locator(
-            "//h6[contains(@class,'oxd-topbar-header-breadcrumb-module')]"
-        ).waitFor({ state: 'visible', timeout: 30000 });
     }
 
     async enterUsername(username: string) {

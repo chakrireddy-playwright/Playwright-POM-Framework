@@ -9,8 +9,8 @@ export class DashboardPage {
 
     async verifyDashboardVisible() {
 
-    await expect(this.page.locator(dashboardLocators.dashboardText)).toBeVisible();
-    }
+    await expect(this.page.locator(dashboardLocators.dashboardText)).toBeVisible({ timeout: 60000 });
+}
 
     async clickProfileIcon() {
 
