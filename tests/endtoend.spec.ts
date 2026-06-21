@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test,expect  } from '@playwright/test';
 
 import { LoginPage } from '../pages/LoginPage';
 import { DashboardPage } from '../pages/DashboardPage';
@@ -25,5 +25,11 @@ test('OrangeHRM Login Test', async ({ page }) => {
     await logoutPage.clickLogout();
 });
 
+test('Demo failure for screenshot', async ({ page }) => {
 
+    await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index');
+
+    // real failure (UI mismatch simulation)
+    await expect(page.locator('h1')).toHaveText('NonExistingText');
+});
 
