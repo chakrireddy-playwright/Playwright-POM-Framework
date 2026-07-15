@@ -1,6 +1,11 @@
 # Node
 node_modules/
 
+# Environment files
+.env
+.env.local
+.env.*
+
 # Playwright
 test-results/
 playwright-report/
@@ -16,3 +21,13 @@ allure-report/
 *.png
 *.webm
 *.zip
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
