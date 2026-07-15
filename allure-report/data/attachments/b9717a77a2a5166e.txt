@@ -1,5 +1,0 @@
-Locators: {
-  usernameInput: "input[name='username']",
-  passwordInput: "input[name='password']",
-  loginButton: "button[type='submit']"
-}

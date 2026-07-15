@@ -5,24 +5,40 @@ import { DashboardPage } from '../pages/DashboardPage';
 import { LogoutPage } from '../pages/LogoutPage';
 
 import { ENV } from '../utils/env';
+import { createBug } from '../utils/jira/createBug';
 
 test('OrangeHRM Login Test @smoke', async ({ page }) => {
 
-    await page.goto(ENV.BASE_URL);
+    try {
 
-    const loginPage = new LoginPage(page);
+        await page.goto(ENV.BASE_URL);
 
-    const dashboardPage = new DashboardPage(page);
+        const loginPage = new LoginPage(page);
 
-    const logoutPage = new LogoutPage(page);
+        const dashboardPage = new DashboardPage(page);
 
-    await loginPage.login(ENV.HRM_USERNAME,ENV.HRM_PASSWORD);
+        const logoutPage = new LogoutPage(page);
 
-    await dashboardPage.verifyDashboardVisible();
+        await loginPage.login(ENV.HRM_USERNAME, ENV.HRM_PASSWORD);
 
-    await dashboardPage.clickProfileIcon();
+        await dashboardPage.verifyDashboardVisible();  
+        //await expect(page.locator("h1")).toHaveText("ManagerDemoFailure");      
+        
+        await dashboardPage.clickProfileIcon();
 
-    await logoutPage.clickLogout();
+        await logoutPage.clickLogout();
+
+    }catch (error: any) {
+
+        await createBug(
+            "OrangeHRM Login Test Failed",
+            error.message
+        );
+
+        throw error;
+
+    }
+
 });
 
     test.skip('Demo failure test @demo', async ({ page }) => {
