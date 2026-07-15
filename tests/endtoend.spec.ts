@@ -21,8 +21,8 @@ test('OrangeHRM Login Test @smoke', async ({ page }) => {
 
         await loginPage.login(ENV.HRM_USERNAME, ENV.HRM_PASSWORD);
 
-        await dashboardPage.verifyDashboardVisible();  
-        //await expect(page.locator("h1")).toHaveText("ManagerDemoFailure");      
+        //await dashboardPage.verifyDashboardVisible();  
+        await expect(page.locator("h1")).toHaveText("ManagerDemoFailure");      
         
         await dashboardPage.clickProfileIcon();
 
