@@ -1,65 +1,59 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
+
     testDir: './tests',
 
-    /* ✅ Run tests in parallel safely */
+    // Run tests one by one
     fullyParallel: false,
 
-    /* ❌ Don’t stop full suite on first failure */
+    // Prevent accidental test.only in CI
     forbidOnly: !!process.env.CI,
 
-    /* ✅ CI stability */
-    retries: process.env.CI ? 1 : 0,
+    // IMPORTANT: Disable retries to avoid duplicate Jira tickets
+    retries: 0,
 
-    /* ⚖️ Safe worker count for Jenkins + browsers */
-    workers: process.env.CI ? 1 : undefined,
+    // Run only one worker
+    workers: 1,
 
-    /* 📊 Reporter (Allure + HTML) */
+    // Reports
     reporter: [
         ['html'],
         ['allure-playwright']
     ],
 
-    /* ⏱ Global timeouts */
+    // Global timeout
     timeout: 60000,
 
     expect: {
         timeout: 10000
     },
 
-    /* 🌐 Browser settings */
     use: {
         baseURL: process.env.BASE_URL || 'https://opensource-demo.orangehrmlive.com',
 
-        /* ✅ IMPORTANT for CI stability */
         actionTimeout: 30000,
         navigationTimeout: 60000,
 
-        trace: 'on-first-retry',
+        // No retry means no trace on retry
+        trace: 'off',
+
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
 
         headless: true,
     },
 
-    /* 🌍 Cross-browser execution */
+    // Run only Chromium
     projects: [
         {
             name: 'chromium',
-            use: { ...devices['Desktop Chrome'] },
+            use: {
+                ...devices['Desktop Chrome']
+            }
         }
-            // ,
-        // {
-        //     name: 'firefox',
-        //     use: { ...devices['Desktop Firefox'] },
-        // },
-        // {
-        //     name: 'webkit',
-        //     use: { ...devices['Desktop Safari'] },
-        // }
     ],
 
-    /* 📁 Output folders */
     outputDir: 'test-results',
+
 });
