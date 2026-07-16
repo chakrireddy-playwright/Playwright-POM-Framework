@@ -1,11 +1,19 @@
 import { jira } from "./jiraClient";
 
+let bugCreated = false;
+
 export async function createBug(summary: string, description: string) {
 
-    const cleanDescription = description.replace(
-        /\x1B\[[0-9;]*m/g,
-        ""
-    );
+    if (bugCreated) {
+        console.log("Jira ticket already created. Skipping...");
+        return;
+    }
+
+    bugCreated = true;
+
+    console.log("createBug() called at:", new Date().toLocaleTimeString());
+
+    const cleanDescription = description.replace(/\x1B\[[0-9;]*m/g, "");
 
     const response = await jira.post("/rest/api/3/issue", {
 
@@ -43,5 +51,4 @@ export async function createBug(summary: string, description: string) {
 
     console.log("Bug Created Successfully");
     console.log(response.data);
-
 }
